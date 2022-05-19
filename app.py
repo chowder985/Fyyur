@@ -11,7 +11,7 @@ from sqlalchemy import func
 from flask_moment import Moment
 from flask import Flask, render_template, request, Response, flash, redirect, url_for, jsonify, abort
 from flask_migrate import Migrate
-from models import Venue, Artist, Show
+from models import db, Venue, Artist, Show
 from datetime import datetime
 import babel
 import dateutil.parser
@@ -27,7 +27,7 @@ collections.Callable = collections.abc.Callable
 app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
-db = SQLAlchemy(app)
+db.init_app(app)
 migrate = Migrate(app, db)
 
 #----------------------------------------------------------------------------#
